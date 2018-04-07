@@ -1,7 +1,8 @@
 var express = require('express');
 var fetch = require('node-fetch');
 var FormData = require('form-data');
-var cors = require('cors')
+var cors = require('cors');
+var config = require('../src/config');
 
 var app = express();
 app.use(cors())
@@ -12,12 +13,11 @@ app.post('/token', function (req, tokenRes) {
     const code = req.query.code;
     console.log('code is ', code)
     var form = new FormData();
-    form.append('grant_type', "authorization_code")
-    form.append('client_id', "hackdaysocial-d031")
-    form.append('client_secret', "07vump71u7aoupbnnccia1")
-    form.append('redirect_uri', "http://localhost:3000/callback")
-    form.append('code', code)
-
+    form.append('grant_type', "authorization_code");
+    form.append('client_id', config.CLIENT_ID);
+    form.append('client_secret', config.CLIENT_SECRET);
+    form.append('redirect_uri', config.REDIRECT_URI);
+    form.append('code', code);
 
     fetch('https://auth.truelayer.com/connect/token', { method: 'POST', body: form })
     .then(function(res) {
@@ -29,7 +29,8 @@ app.post('/token', function (req, tokenRes) {
         return tokenRes.status(200).json(token);
 
     }).catch(function(e){
-        res.sendStatus(500)
+        res.status(500)
+        res.send(e)
         console.log('error', e)
     })
 

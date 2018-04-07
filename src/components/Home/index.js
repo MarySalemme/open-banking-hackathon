@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import queryString from 'query-string';
 import { setToken, getAccounts, getTransactions } from '../../actions/auth';
-
+const config = require('../../config');
 
 class Home extends Component {
   async componentWillMount() {
@@ -24,7 +24,7 @@ class Home extends Component {
         })}
         {JSON.stringify(this.props.transactions)}
         <p style={{color:'red'}}>{this.props.reviewResults.spendsMoreThanEarns !== undefined ? `Do you spend more than you earn too often? ${this.props.reviewResults.spendsMoreThanEarns}` : null}</p>
-        { showAuthCTA ? <a href="https://auth.truelayer.com/?response_type=code&client_id=hackdaysocial-d031&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true">Authenticate</a> : null }
+        {showAuthCTA ? <a href={`https://auth.truelayer.com/?response_type=code&client_id=${config.CLIENT_ID}&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true`}>Authenticate</a> : null }
         </div>
     );
   }
