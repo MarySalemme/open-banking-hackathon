@@ -7,6 +7,7 @@ import _ from 'underscore';
 import { setToken, getAccounts, getTransactions } from '../../actions/auth';
 import config from '../../config';
 import style from './style.css';
+import MonthlyTransactions from '../MonthlyTransactions/index';
 
 const byMonth = (transactions) => {
   return _.groupBy(transactions, (transaction) => {
@@ -28,7 +29,7 @@ class Home extends Component {
     const showAuthCTA = !this.props.token;
 
     return (
-        <div className="Home">
+        <div className={style.center}>
           {this.props.accounts.map((account) => (
               <button className={style.button} onClick={()=>{this.props.getTransactions(this.props.token, account.account_id)}}>{account.display_name}</button>
           ))}
@@ -40,14 +41,7 @@ class Home extends Component {
 
             return (
               <div>
-                <h3>{monthNames[month]}</h3>
-                <ul>
-                  {transactionsByMonth[month].map((transaction) => {
-                    console.log('this is a transaction', transaction);
-                    return <li>{transaction.description}: {transaction.amount}{transaction.currency}</li>
-                  })}
-                 
-                </ul>
+                <MonthlyTransactions month={monthNames[month]} transactions={transactionsByMonth[month]} />
               </div>
             )
           })}
