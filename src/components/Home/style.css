@@ -1,0 +1,15 @@
+.button {
+  border-radius: 3px;
+  padding: 0.25em 1em;
+  margin: 0 1em;
+  background: rgb(66, 134, 244);
+  color: white;
+  border: 1px solid rgb(66, 134, 244);
+  text-decoration: none;
+}
+
+.button:focus {
+  background: white;
+  color: rgb(66, 134, 244);
+  border: 1px solid rgb(66, 134, 244);
+}
