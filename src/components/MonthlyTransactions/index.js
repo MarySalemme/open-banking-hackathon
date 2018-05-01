@@ -4,8 +4,8 @@ import style from './style.css';
 
 function MonthlyTransactions(props) {
   return (
-    <div>
-      <h3>{props.month}</h3>
+    <div className={style.monthlyTransactions}>
+      <h3 className={style.month}>{props.month}</h3>
       <table className={style.transactions}>
         <tr>
           <th>Description</th>

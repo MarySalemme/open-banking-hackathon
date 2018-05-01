@@ -37,7 +37,7 @@ export const getTransactions =  (token, accountId) => async (dispatch, getState)
              type: "SET_REVIEW_RESULTS",
              reviewResults
         })
-        console.log('our review: ', reviewTransactions(transactions.results));
+        // console.log('our review: ', reviewTransactions(transactions.results));
     }
 }
 
@@ -55,7 +55,7 @@ export const reviewTransactions = (transactions) => {
         return currentObj
     }, {})
 
-    console.log('this is our monthly spending', monthlySpending);
+    // console.log('this is our monthly spending', monthlySpending);
     let numMonthsSpendingMore = 0;
     let numMonthsSpendingLess = 0;
     
