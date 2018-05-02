@@ -2,7 +2,7 @@ import React from 'react';
 import Transaction from '../Transaction/index';
 import style from './style.css';
 
-function TransactionsList(props) {
+const TransactionsList = (props) => {
   return (
     <div className={style.transactionsList}>
       <h3 className={style.month}>{props.month}</h3>
@@ -22,11 +22,11 @@ function TransactionsList(props) {
               currency={transaction.currency}
             />)
           })}
-        </tbody>  
+        </tbody>
       </table>
 
     </div>
   );
-}
+};
 
 export default TransactionsList;
