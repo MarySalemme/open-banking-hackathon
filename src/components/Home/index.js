@@ -6,9 +6,9 @@ import _ from 'underscore';
 import { setToken, getAccounts, getTransactions } from '../../actions/auth';
 import config from '../../config';
 import style from './style.css';
-import MonthlyTransactions from '../MonthlyTransactions/index';
+import TransactionsList from '../TransactionsList/index';
 
-const byMonth = (transactions) => {
+const groupByMonth = (transactions) => {
   return _.groupBy(transactions, (transaction) => {
     return new Date(transaction.timestamp).getMonth();
   })
@@ -30,15 +30,15 @@ class Home extends Component {
           {this.props.accounts.map((account) => (
               <button className={style.button} onClick={()=>{this.props.getTransactions(this.props.token, account.account_id)}}>{account.display_name}</button>
           ))}
-        {Object.keys(byMonth(this.props.transactions)).map((month) => {
+          {Object.keys(groupByMonth(this.props.transactions)).map((month) => {
             const monthNames = ["January", "February", "March", "April", "May", "June",
               "July", "August", "September", "October", "November", "December"
             ];
-          const transactionsByMonth = byMonth(this.props.transactions);
+            const transactionsByMonth = groupByMonth(this.props.transactions);
 
             return (
               <div>
-                <MonthlyTransactions month={monthNames[month]} transactions={transactionsByMonth[month]} />
+                <TransactionsList month={monthNames[month]} transactions={transactionsByMonth[month]} />
               </div>
             )
           })}
