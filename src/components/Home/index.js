@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
 import queryString from 'query-string';
 import _ from 'underscore';
 import { setToken, getAccounts, getTransactions } from '../../actions/auth';
@@ -11,9 +10,7 @@ import MonthlyTransactions from '../MonthlyTransactions/index';
 
 const byMonth = (transactions) => {
   return _.groupBy(transactions, (transaction) => {
-    // const locale = "en-us";
     return new Date(transaction.timestamp).getMonth();
-      // toLocaleString(locale, { month: "long" });
   })
 }
 
@@ -33,11 +30,11 @@ class Home extends Component {
           {this.props.accounts.map((account) => (
               <button className={style.button} onClick={()=>{this.props.getTransactions(this.props.token, account.account_id)}}>{account.display_name}</button>
           ))}
-          {Object.keys(byMonth(this.props.transactions)).map((month) => {
+        {Object.keys(byMonth(this.props.transactions)).map((month) => {
             const monthNames = ["January", "February", "March", "April", "May", "June",
               "July", "August", "September", "October", "November", "December"
             ];
-            const transactionsByMonth = byMonth(this.props.transactions);
+          const transactionsByMonth = byMonth(this.props.transactions);
 
             return (
               <div>

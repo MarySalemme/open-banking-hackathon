@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import queryString from 'query-string';
 import store from './store';
 import './App.css';
 import Home from './components/Home';
