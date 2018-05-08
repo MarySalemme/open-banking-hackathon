@@ -1,11 +1,22 @@
 import React from 'react';
 import style from './style.css';
 
-const ReviewResults = (props) => {
+const ReviewResults = props => {
   if (props.spendsMoreThanEarns) {
-    return <div className={style.badReview}>You're really bad</div>
+    return (
+      <div className={style.badReview}>
+        <p>
+          It looks like you are not managing your finances in the right way.
+        </p>
+        <p>
+          We can offer financial support to you. <br />
+          Call a financial advisor for free debt advice on{' '}
+          <b>0118 999 881 999 119 725 3</b>
+        </p>
+      </div>
+    );
   } else {
-    return <div className={style.goodReview}>You're great</div>
+    return <div className={style.goodReview}>You're doing great!</div>;
   }
 };
 
