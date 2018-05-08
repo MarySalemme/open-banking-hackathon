@@ -2,18 +2,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import queryString from 'query-string';
-import _ from 'underscore';
+import { groupBy } from 'underscore';
 import { setToken, getAccounts, getTransactions } from '../../actions/auth';
 import config from '../../config';
 import style from './style.css';
 import TransactionsList from '../TransactionsList/index';
 import ReviewResults from '../ReviewResults/index';
 
-const groupByMonth = (transactions) => {
-  return _.groupBy(transactions, (transaction) => {
+const groupByMonth = transactions => {
+  return groupBy(transactions, transaction => {
     return new Date(transaction.timestamp).getMonth();
-  })
-}
+  });
+};
 
 class Home extends Component {
   async componentWillMount() {
@@ -28,23 +28,58 @@ class Home extends Component {
 
     return (
       <div className={style.center}>
-        {this.props.accounts.map((account) => (
-          <button className={style.button} onClick={() => { this.props.getTransactions(this.props.token, account.account_id) }}>{account.display_name}</button>
+        {this.props.accounts.map(account => (
+          <button
+            className={style.button}
+            onClick={() => {
+              this.props.getTransactions(this.props.token, account.account_id);
+            }}
+          >
+            {account.display_name}
+          </button>
         ))}
-        {this.props.reviewResults.spendsMoreThanEarns !== undefined ? <ReviewResults spendsMoreThanEarns={this.props.reviewResults.spendsMoreThanEarns} /> : null}
-        {Object.keys(groupByMonth(this.props.transactions)).map((month) => {
-          const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
+
+        {this.props.reviewResults.spendsMoreThanEarns && (
+          <ReviewResults
+            spendsMoreThanEarns={this.props.reviewResults.spendsMoreThanEarns}
+          />
+        )}
+        {Object.keys(groupByMonth(this.props.transactions)).map(month => {
+          const monthNames = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
           ];
           const transactionsByMonth = groupByMonth(this.props.transactions);
 
           return (
             <div>
-              <TransactionsList month={monthNames[month]} transactions={transactionsByMonth[month]} />
+              <TransactionsList
+                month={monthNames[month]}
+                transactions={transactionsByMonth[month]}
+              />
             </div>
-          )
+          );
         })}
-        {showAuthCTA ? <a className={style.button} href={`https://auth.truelayer.com/?response_type=code&client_id=${config.CLIENT_ID}&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true`}>Authenticate</a> : null}
+        {showAuthCTA && (
+          <a
+            className={style.button}
+            href={`https://auth.truelayer.com/?response_type=code&client_id=${
+              config.CLIENT_ID
+            }&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true`}
+          >
+            Authenticate
+          </a>
+        )}
       </div>
     );
   }
@@ -53,30 +88,33 @@ class Home extends Component {
 Home.defaultProps = {
   accounts: [],
   reviewResults: {},
-  transactions: []
-}
+  transactions: [],
+};
 
 const mapStateToProps = state => {
   return {
     token: state.auth && state.auth.access_token,
     accounts: state.accounts && state.accounts.results,
     transactions: state.transactions && state.transactions.results,
-    reviewResults: state.reviewResults
+    reviewResults: state.reviewResults,
   };
 };
+
+// const mapStateToProps = ({ accounts: { isLoading, results } }) => {
+//   return {
+//     isLoading,
+//     results: accounts,
+//   };
+// };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       setToken,
       getAccounts,
-      getTransactions
+      getTransactions,
     },
     dispatch,
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-
-
-// <p style={{ color: 'red' }}>{this.props.reviewResults.spendsMoreThanEarns !== undefined ? `Do you spend more than you earn too often? ${this.props.reviewResults.spendsMoreThanEarns}` : null}</p>
