@@ -10,10 +10,11 @@ const CLIENT_ID = "replace with the TrueLayer clientID";
 const CLIENT_SECRET = "replace with secret";
 const REDIRECT_URI = "replace with URI";
 
-
-module.exports.CLIENT_ID = CLIENT_ID;
-module.exports.CLIENT_SECRET = CLIENT_SECRET;
-module.exports.REDIRECT_URI = REDIRECT_URI;
+module.exports = {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URI,
+}
 ```
 
 ### Run the app
