@@ -1,0 +1,11 @@
+.badReview {
+  margin: auto;
+  padding: 10px;
+  background-color: rgba(230, 178, 178, 0.5);
+}
+
+.goodReview {
+  margin: auto;
+  padding: 10px;
+  background-color: rgba(188, 235, 183, 0.5);
+}
