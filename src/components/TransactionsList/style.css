@@ -17,9 +17,9 @@
   border-collapse: collapse;
 }
 
-.transactions td, .transactions th {
+.transactions td,
+.transactions th {
   text-decoration: none;
-  text-align: left;
   color: #333;
   padding: 8px;
   width: 200px;
@@ -28,12 +28,21 @@
   white-space: nowrap;
 }
 
-.transactions tr:hover {background-color: #ddd;}
+.transactions tr:hover {
+  background-color: #ddd;
+}
 
 .transactions th {
-    font-size: 12px;
-    padding: 8px;
-    text-align: left;
-    background: rgb(66, 134, 244);
-    color: white;
+  font-size: 12px;
+  padding: 8px;
+  background: rgb(66, 134, 244);
+  color: white;
+}
+
+.amount {
+  text-align: right;
+}
+
+.description {
+  text-align: left;
 }

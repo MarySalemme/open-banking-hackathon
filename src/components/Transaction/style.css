@@ -5,3 +5,11 @@
 .debit {
   background-color: rgba(230, 178, 178, 0.5);
 }
+
+.amount {
+  text-align: right;
+}
+
+.description {
+  text-align: left;
+}

@@ -9,8 +9,8 @@ const TransactionsList = props => {
       <table className={style.transactions}>
         <thead>
           <tr>
-            <th>Description</th>
-            <th>Amount</th>
+            <th className={style.description}>Description</th>
+            <th className={style.amount}>Amount (GBP)</th>
           </tr>
         </thead>
         <tbody>

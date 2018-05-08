@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.css';
 
-const Transaction = (props) => {
+const Transaction = props => {
   return (
     <tr className={props.amount >= 0 ? style.credit : style.debit}>
-      <td>{props.description}</td>
-      <td>{props.amount} {props.currency}</td>
+      <td className={style.description}>{props.description}</td>
+      <td className={style.amount}>{props.amount}</td>
     </tr>
   );
 };
