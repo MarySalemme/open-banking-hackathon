@@ -9,8 +9,7 @@
 }
 
 .transactions {
-  font-family: sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   margin: auto;
   padding: 10px;
   background-color: #eee;
@@ -33,7 +32,7 @@
 }
 
 .transactions th {
-  font-size: 12px;
+  font-size: 14px;
   padding: 8px;
   background: rgb(66, 134, 244);
   color: white;

@@ -57,7 +57,7 @@ class Home extends Component {
             'September',
             'October',
             'November',
-            'December',
+            'December'
           ];
           const transactionsByMonth = groupByMonth(this.props.transactions);
 
@@ -71,14 +71,19 @@ class Home extends Component {
           );
         })}
         {showAuthCTA && (
-          <a
-            className={style.button}
-            href={`https://auth.truelayer.com/?response_type=code&client_id=${
-              config.CLIENT_ID
-            }&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true`}
-          >
-            Authenticate
-          </a>
+          <div>
+            <h3 className={style.description}>
+              Use our free service to find out how you are managing your money{' '}
+            </h3>
+            <a
+              className={style.button}
+              href={`https://auth.truelayer.com/?response_type=code&client_id=${
+                config.CLIENT_ID
+              }&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true`}
+            >
+              Authenticate
+            </a>
+          </div>
         )}
       </div>
     );
@@ -88,7 +93,7 @@ class Home extends Component {
 Home.defaultProps = {
   accounts: [],
   reviewResults: {},
-  transactions: [],
+  transactions: []
 };
 
 const mapStateToProps = state => {
@@ -96,7 +101,7 @@ const mapStateToProps = state => {
     token: state.auth && state.auth.access_token,
     accounts: state.accounts && state.accounts.results,
     transactions: state.transactions && state.transactions.results,
-    reviewResults: state.reviewResults,
+    reviewResults: state.reviewResults
   };
 };
 
@@ -112,9 +117,9 @@ const mapDispatchToProps = dispatch =>
     {
       setToken,
       getAccounts,
-      getTransactions,
+      getTransactions
     },
-    dispatch,
+    dispatch
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
