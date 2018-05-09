@@ -4,8 +4,8 @@
 
 .month {
   text-align: center;
-  font-family: sans-serif;
   font-size: 16px;
+  margin: 5px;
 }
 
 .transactions {

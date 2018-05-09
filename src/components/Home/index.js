@@ -81,7 +81,7 @@ class Home extends Component {
                 config.CLIENT_ID
               }&nonce=3317513328&scope=info%20accounts%20balance%20transactions%20cards%20offline_access&redirect_uri=http://localhost:3000/callback&enable_mock=true`}
             >
-              Authenticate
+              Authorise Open Banking
             </a>
           </div>
         )}
@@ -104,13 +104,6 @@ const mapStateToProps = state => {
     reviewResults: state.reviewResults
   };
 };
-
-// const mapStateToProps = ({ accounts: { isLoading, results } }) => {
-//   return {
-//     isLoading,
-//     results: accounts,
-//   };
-// };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

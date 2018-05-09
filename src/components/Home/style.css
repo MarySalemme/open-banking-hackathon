@@ -1,5 +1,5 @@
 .center {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: auto;
   width: 50%;
   padding: 10px;
@@ -23,6 +23,9 @@
 }
 
 .description {
-  font-size: 30px;
+  font-size: 25px;
   color: rgb(66, 134, 244);
+  position: static;
+  top: 50%;
+  /* left: 50%; */
 }
